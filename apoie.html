@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Apoie</title>
+<link rel="icon" href="logo1.png" type="image/png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Ícones -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- Fonte moderna -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+html, body {
+    height: 100%;
+}
+
+body {
+    background: #000;
+    color: #f1f1f1;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+main {
+    flex: 1;
+}
+
+/* NAVBAR */
+.navbar {
+    background-color: #000;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: #fff !important;
+}
+
+.navbar-brand img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 10px rgba(77,163,255,0.4);
+    animation: glow 2.5s infinite alternate;
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 6px rgba(77,163,255,0.3); }
+    to { box-shadow: 0 0 14px rgba(77,163,255,0.6); }
+}
+
+.nav-link {
+    color: #ddd !important;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    color: #fff !important;
+}
+
+/* BOTÃO MOBILE */
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler-icon {
+    background-image: none;
+    width: 26px;
+    height: 2px;
+    background: #fff;
+    position: relative;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+    content: '';
+    position: absolute;
+    width: 26px;
+    height: 2px;
+    background: #fff;
+    left: 0;
+}
+
+.navbar-toggler-icon::before { top: -8px; }
+.navbar-toggler-icon::after { top: 8px; }
+
+.navbar-collapse {
+    transition: all 0.35s ease;
+}
+
+/* FOOTER */
+footer {
+    background: #000;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    text-align: center;
+    padding: 15px;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+footer a {
+    color: #aaa;
+    text-decoration: none;
+}
+footer a:hover { color: #fff; }
+
+/* TÍTULO */
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+    overflow: hidden;
+}
+
+.section-title span {
+    display: inline-block;
+    font-size: 6.4rem;
+    font-weight: 700;
+    letter-spacing: -0.6px;
+    color: #f8f8f8;
+}
+
+/* animação título */
+.reveal-title {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.reveal-title.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* LINKS DOS CARDS */
+.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* GRID DOS CARDS */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+/* CARD */
+.course-card {
+    display: flex;
+    gap: 22px;
+    background: linear-gradient(145deg, #141414, #0c0c0c);
+    border-radius: 16px;
+    padding: 22px;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    cursor: pointer;
+}
+
+.course-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 15px 40px rgba(77,163,255,0.18);
+}
+
+/* IMAGEM 16:9 */
+.course-image {
+    width: 220px;
+    aspect-ratio: 20 / 20;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.course-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000;
+}
+
+/* TEXTO */
+.card-content h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #fff;
+}
+
+.card-content p {
+    margin: 0;
+    color: #ccc;
+    line-height: 1.5;
+}
+
+/* ANIMAÇÃO DE ENTRADA DOS CARDS */
+.reveal-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .cards-container {
+        grid-template-columns: 1fr;
+    }
+
+    .course-card {
+        flex-direction: column;
+    }
+
+    .course-card img {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .section-title span {
+        font-size: 1.9rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg">
+<div class="container">
+    <a class="navbar-brand" href="index.html">
+        <img src="https://yt3.googleusercontent.com/ytc/AIdro_k19DhsB6GK35b-YeE68kDupz9aYFJJhQvMBQxbmR4sbQ=s160-c-k-c0x00ffffff-no-rj">
+        Et Non Books
+    </a>
+
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto mt-3 mt-lg-0">
+            <li class="nav-item"><a class="nav-link" href="cursos.html">Cursos</a></li>
+            <li class="nav-item"><a class="nav-link" href="livros.html">Livros</a></li>
+            <li class="nav-item"><a class="nav-link" href="apoie.html">Apoie</a></li>
+        </ul>
+    </div>
+</div>
+</nav>
+
+<main class="container my-5">
+<!-- TÍTULO -->
+
+<div class="row g-4 cards-container">
+
+    <a href="#" class="col-12 card-link">
+        <div class="course-card reveal-card">
+            <div class="course-image">
+                <img src="pix.png" alt="Curso 1">
+            </div>
+            <div class="card-content">
+                <h3>Pix</h3>
+                <p>tibrciomateus@gmail.com</p>
+            </div>
+        </div>
+    </a>
+
+    <a href="#" class="col-12 card-link">
+        <div class="course-card reveal-card">
+            <div class="course-image">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1024px-Bitcoin.svg.png" alt="Curso 2">
+            </div>
+            <div class="card-content">
+                <h3>Bitcoin</h3>
+                <p>Chave Lightning: badplow06@walletofsatoshi.com </p>
+            </div>
+        </div>
+    </a>
+
+
+
+   
+
+</div>
+
+
+
+
+</main>
+
+
+
+
+<footer>
+© 2025 · <a href="terms.html">Termos de Uso</a>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+// ANIMAÇÃO DE ENTRADA DOS CARDS
+const cards = document.querySelectorAll('.reveal-card');
+
+window.addEventListener('load', () => {
+    cards.forEach((card, index) => {
+        setTimeout(() => {
+            card.classList.add('visible');
+        }, index * 150); // efeito cascata
+    });
+});
+</script>
+
+</body>
+</html>

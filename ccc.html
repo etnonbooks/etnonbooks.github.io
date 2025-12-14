@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Curso de crítica cultural</title>
+<link rel="icon" href="logo1.png" type="image/png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Ícones -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- Fonte moderna -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+html, body {
+    height: 100%;
+}
+
+body {
+    background: #000; /* ALTERADO: fundo preto absoluto */
+    color: #f1f1f1;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+main {
+    flex: 1;
+}
+
+/* NAVBAR */
+.navbar {
+    background-color: #000;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: #fff !important;
+}
+
+.navbar-brand img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 10px rgba(77,163,255,0.4);
+    animation: glow 2.5s infinite alternate;
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 6px rgba(77,163,255,0.3); }
+    to { box-shadow: 0 0 14px rgba(77,163,255,0.6); }
+}
+
+.nav-link {
+    color: #ddd !important;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    color: #fff !important;
+}
+
+/* BOTÃO MOBILE */
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler-icon {
+    background-image: none;
+    width: 26px;
+    height: 2px;
+    background: #fff;
+    position: relative;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+    content: '';
+    position: absolute;
+    width: 26px;
+    height: 2px;
+    background: #fff;
+    left: 0;
+}
+
+.navbar-toggler-icon::before { top: -8px; }
+.navbar-toggler-icon::after { top: 8px; }
+
+/* animação menu mobile */
+.navbar-collapse {
+    transition: all 0.35s ease;
+}
+
+/* BUSCA */
+.search-box {
+    margin-bottom: 25px;
+    position: sticky;      /* NOVO */
+    top: 10px;             /* NOVO */
+    z-index: 100;          /* NOVO */
+    background: #000;      /* NOVO */
+    padding: 10px 0;       /* NOVO */
+}
+
+.search-box input {
+    background: #0e0e0e;
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #fff;
+}
+
+.search-box input::placeholder {
+    color: #888;
+}
+
+/* CAIXAS */
+.accordion-item-custom {
+    background: linear-gradient(145deg, #151515, #0e0e0e);
+    border-radius: 12px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: box-shadow 0.3s;
+}
+
+.accordion-item-custom.highlight {
+    box-shadow: 0 0 0 2px rgba(77,163,255,0.6);
+}
+
+.accordion-header-custom {
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion-header-custom h5 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.accordion-header-custom i {
+    transition: transform 0.3s;
+}
+
+.accordion-content-custom {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    padding: 0 20px;
+}
+
+.accordion-content-custom p {
+    margin: 15px 0 20px;
+    color: #ccc;
+}
+
+.accordion-content-custom a {
+    color: #4da3ff;
+    text-decoration: none;
+}
+
+.accordion-item-custom.active i {
+    transform: rotate(180deg);
+}
+
+/* FOOTER */
+footer {
+    background: #000;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    text-align: center;
+    padding: 15px;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+footer a {
+    color: #aaa;
+    text-decoration: none;
+}
+footer a:hover { color: #fff; }
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+    overflow: hidden;
+}
+
+.section-title span {
+    display: inline-block;
+    font-size: 6.4rem;
+    font-weight: 700;
+    letter-spacing: -0.6px;
+    color: #f8f8f8;
+    position: relative;
+}
+
+
+
+/* estado inicial da animação */
+.reveal-title {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+/* quando entra na tela */
+.reveal-title.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* mobile */
+@media (max-width: 576px) {
+    .section-title span {
+        font-size: 1.9rem;
+    }
+}
+
+
+</style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg">
+<div class="container">
+    <a class="navbar-brand" href="index.html">
+        <img src="https://yt3.googleusercontent.com/ytc/AIdro_k19DhsB6GK35b-YeE68kDupz9aYFJJhQvMBQxbmR4sbQ=s160-c-k-c0x00ffffff-no-rj">
+        Et Non Books
+    </a>
+
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto mt-3 mt-lg-0">
+            <li class="nav-item"><a class="nav-link" href="cursos.html">Cursos</a></li>
+            <li class="nav-item"><a class="nav-link" href="livros.html">Livros</a></li>
+            <li class="nav-item"><a class="nav-link" href="apoie.html">Apoie</a></li>
+        </ul>
+    </div>
+</div>
+</nav>
+
+<main class="container my-5">
+
+<!-- BUSCA -->
+<div class="search-box">
+    <input id="searchInput" type="text" class="form-control" placeholder="Buscar conteúdo...">
+</div>
+
+<!-- TÍTULO -->
+<h1 class="section-title reveal-title">
+    <span>Curso de crítica cultural</span>
+</h1>
+
+
+<!-- CAIXAS -->
+<div class="accordion-item-custom" data-search="socrates filosofia">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Aula 01</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+O repositório desse curso ainda não está disponível<a href="ccc.html" target="_blank">Desculpe</a><br>
+        </p>
+    </div>
+</div>
+
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Aula 02</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+O repositório desse curso ainda não está disponível<a href="ccc.html" target="_blank">Desculpe</a><br>
+</p>
+    </div>
+</div>
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Aula 03</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+O repositório desse curso ainda não está disponível<a href="ccc.html" target="_blank">Desculpe</a><br>
+</p>
+    </div>
+</div>
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Aula 04 </h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+O repositório desse curso ainda não está disponível<a href="ccc.html" target="_blank">Desculpe</a><br>
+</p>
+    </div>
+</div>
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Aula 05 </h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+O repositório desse curso ainda não está disponível<a href="ccc.html" target="_blank">Desculpe</a><br>
+</p>
+    </div>
+</div>
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Aula 06</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+O repositório desse curso ainda não está disponível<a href="ccc.html" target="_blank">Desculpe</a><br>
+</p>
+    </div>
+</div>
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Aula 07</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+O repositório desse curso ainda não está disponível<a href="ccc.html" target="_blank">Desculpe</a><br>
+</p>
+    </div>
+</div>
+
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Aula 08</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+O repositório desse curso ainda não está disponível<a href="ccc.html" target="_blank">Desculpe</a><br>
+</p>
+    </div>
+</div>
+
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Aula 09</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+O repositório desse curso ainda não está disponível<a href="ccc.html" target="_blank">Desculpe</a><br>
+</p>
+    </div>
+</div>
+
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Aula 10</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+O repositório desse curso ainda não está disponível<a href="ccc.html" target="_blank">Desculpe</a><br>
+</p>
+    </div>
+</div>
+
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Aula 11</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+O repositório desse curso ainda não está disponível<a href="ccc.html" target="_blank">Desculpe</a><br>
+</p>
+    </div>
+</div>
+
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Aula 12</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+O repositório desse curso ainda não está disponível<a href="ccc.html" target="_blank">Desculpe</a><br>
+</p>
+    </div>
+</div>
+
+
+</main>
+
+<footer>
+© 2025 · <a href="terms.html">Termos de Uso</a>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+// CONTROLE MANUAL (NUNCA BLOQUEADO)
+function toggleAccordionManual(item) {
+    const content = item.querySelector('.accordion-content-custom');
+
+    if (item.classList.contains('active')) {
+        item.classList.remove('active');
+        content.style.maxHeight = null;
+    } else {
+        item.classList.add('active');
+        content.style.maxHeight = content.scrollHeight + 'px';
+    }
+}
+
+// CONTROLE AUTOMÁTICO (BUSCA)
+function openAccordion(item) {
+    const content = item.querySelector('.accordion-content-custom');
+    if (!item.classList.contains('active')) {
+        item.classList.add('active');
+        content.style.maxHeight = content.scrollHeight + 'px';
+    }
+}
+
+function closeAccordion(item) {
+    const content = item.querySelector('.accordion-content-custom');
+    item.classList.remove('active');
+    content.style.maxHeight = null;
+}
+
+// Normaliza texto
+function normalize(text) {
+    return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+}
+
+const searchInput = document.getElementById('searchInput');
+
+// BUSCA PROGRESSIVA
+searchInput.addEventListener('input', function () {
+    const value = normalize(this.value);
+
+    // Se apagar tudo → fecha tudo
+    if (!value) {
+        document.querySelectorAll('.accordion-item-custom').forEach(item => {
+            closeAccordion(item);
+            item.classList.remove('highlight');
+        });
+        return;
+    }
+
+    document.querySelectorAll('.accordion-item-custom').forEach(item => {
+        item.classList.remove('highlight');
+        const text = normalize(item.dataset.search + item.innerText);
+
+        if (text.includes(value)) {
+            openAccordion(item);
+            item.classList.add('highlight');
+        }
+    });
+});
+
+// FINALIZA BUSCA (Enter ou espaço)
+searchInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+        const value = normalize(this.value.trim());
+        let firstMatch = null;
+
+        document.querySelectorAll('.accordion-item-custom').forEach(item => {
+            const text = normalize(item.dataset.search + item.innerText);
+
+            if (value && text.includes(value)) {
+                openAccordion(item);
+                item.classList.add('highlight');
+                if (!firstMatch) firstMatch = item;
+            } else {
+                closeAccordion(item);
+                item.classList.remove('highlight');
+            }
+        });
+
+        if (firstMatch) {
+            setTimeout(() => {
+                firstMatch.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            }, 150);
+        }
+    }
+});
+
+// ANIMAÇÃO DO TÍTULO AO ENTRAR NA TELA
+const title = document.querySelector('.reveal-title');
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target); // anima só uma vez
+        }
+    });
+}, {
+    threshold: 0.4
+});
+
+observer.observe(title);
+</script>
+
+</body>
+</html>

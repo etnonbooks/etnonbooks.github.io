@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Curso de sobrevivência intelectual</title>
+<link rel="icon" href="logo1.png" type="image/png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Ícones -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- Fonte moderna -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+html, body {
+    height: 100%;
+}
+
+body {
+    background: #000; /* ALTERADO: fundo preto absoluto */
+    color: #f1f1f1;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+main {
+    flex: 1;
+}
+
+/* NAVBAR */
+.navbar {
+    background-color: #000;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: #fff !important;
+}
+
+.navbar-brand img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 10px rgba(77,163,255,0.4);
+    animation: glow 2.5s infinite alternate;
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 6px rgba(77,163,255,0.3); }
+    to { box-shadow: 0 0 14px rgba(77,163,255,0.6); }
+}
+
+.nav-link {
+    color: #ddd !important;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    color: #fff !important;
+}
+
+/* BOTÃO MOBILE */
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler-icon {
+    background-image: none;
+    width: 26px;
+    height: 2px;
+    background: #fff;
+    position: relative;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+    content: '';
+    position: absolute;
+    width: 26px;
+    height: 2px;
+    background: #fff;
+    left: 0;
+}
+
+.navbar-toggler-icon::before { top: -8px; }
+.navbar-toggler-icon::after { top: 8px; }
+
+/* animação menu mobile */
+.navbar-collapse {
+    transition: all 0.35s ease;
+}
+
+/* BUSCA */
+.search-box {
+    margin-bottom: 25px;
+    position: sticky;      /* NOVO */
+    top: 10px;             /* NOVO */
+    z-index: 100;          /* NOVO */
+    background: #000;      /* NOVO */
+    padding: 10px 0;       /* NOVO */
+}
+
+.search-box input {
+    background: #0e0e0e;
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #fff;
+}
+
+.search-box input::placeholder {
+    color: #888;
+}
+
+/* CAIXAS */
+.accordion-item-custom {
+    background: linear-gradient(145deg, #151515, #0e0e0e);
+    border-radius: 12px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: box-shadow 0.3s;
+}
+
+.accordion-item-custom.highlight {
+    box-shadow: 0 0 0 2px rgba(77,163,255,0.6);
+}
+
+.accordion-header-custom {
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion-header-custom h5 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.accordion-header-custom i {
+    transition: transform 0.3s;
+}
+
+.accordion-content-custom {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    padding: 0 20px;
+}
+
+.accordion-content-custom p {
+    margin: 15px 0 20px;
+    color: #ccc;
+}
+
+.accordion-content-custom a {
+    color: #4da3ff;
+    text-decoration: none;
+}
+
+.accordion-item-custom.active i {
+    transform: rotate(180deg);
+}
+
+/* FOOTER */
+footer {
+    background: #000;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    text-align: center;
+    padding: 15px;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+footer a {
+    color: #aaa;
+    text-decoration: none;
+}
+footer a:hover { color: #fff; }
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+    overflow: hidden;
+}
+
+.section-title span {
+    display: inline-block;
+    font-size: 6.4rem;
+    font-weight: 700;
+    letter-spacing: -0.6px;
+    color: #f8f8f8;
+    position: relative;
+}
+
+
+
+/* estado inicial da animação */
+.reveal-title {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+/* quando entra na tela */
+.reveal-title.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* mobile */
+@media (max-width: 576px) {
+    .section-title span {
+        font-size: 1.9rem;
+    }
+}
+
+
+</style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg">
+<div class="container">
+    <a class="navbar-brand" href="index.html">
+        <img src="https://yt3.googleusercontent.com/ytc/AIdro_k19DhsB6GK35b-YeE68kDupz9aYFJJhQvMBQxbmR4sbQ=s160-c-k-c0x00ffffff-no-rj">
+        Et Non Books
+    </a>
+
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto mt-3 mt-lg-0">
+            <li class="nav-item"><a class="nav-link" href="cursos.html">Cursos</a></li>
+            <li class="nav-item"><a class="nav-link" href="livros.html">Livros</a></li>
+            <li class="nav-item"><a class="nav-link" href="apoie.html">Apoie</a></li>
+        </ul>
+    </div>
+</div>
+</nav>
+
+<main class="container my-5">
+
+<!-- BUSCA -->
+<div class="search-box">
+    <input id="searchInput" type="text" class="form-control" placeholder="Buscar conteúdo...">
+</div>
+
+<!-- TÍTULO -->
+<h1 class="section-title reveal-title">
+    <span>Curso de sobrevivência intelectual</span>
+</h1>
+
+
+<!-- CAIXAS -->
+<div class="accordion-item-custom" data-search="socrates filosofia">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Aula 01: Ameaças à Vida Intelectual</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+  Edmundo Campos Coelho - A sinecura acadêmica <a href="" target="_blank">não encontrado</a><br>
+        </p>
+    </div>
+</div>
+
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Aula 02: Situação Cultural do Brasil</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+Notas <br>
+Por que a cena cultural brasileira foi cortada do resto do mundo?<br>
+Qual é o cânone cultural brasileiro legítimo?
+</p>
+    </div>
+</div>
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Aula 03: Como Ler Livros</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+Como ler livros-Mortimer Adler <a href="https://ia803108.us.archive.org/7/items/15comolerlivrosmortimeradler/15como%20ler%20livros%2C%20mortimer%20adler.pdf" target="_blank">Livro</a><br>
+The Underground History of American Education - John Taylor Gatto <a href="https://dn790000.ca.archive.org/0/items/TheUndergroundHistoryOfAmericanEducation_643/JohnTaylorGatto-theUndergroundHistoryOfAmericanEducation_ASchoolTeachersIntimateInvestigationIntoTheProblemOfModernSchooling2000.pdf" target="_blank">Livro</a><br>
+Emburrecimento programado - John Taylor Gatto <a href="https://dn721605.ca.archive.org/0/items/emburrecimento-programado-john-taylor-gatto/Emburrecimento%20Programado%20O%20Curriculo%20Oculto%20Da%20Escolarização%20Obrigatoria%20-%20John%20Taylor%20Gatto.pdf" target="_blank">Livro</a><br>
+Dumbing Us Down - John Taylor Gatto <a href="https://shikshantar.org/sites/default/files/PDF/John%20Taylor%20Gatto-Dumbing%20Us%20Down_%20The%20Hidden%20Curriculum%20of%20Compulsory%20Schooling%20(2002).pdf" target="_blank">Livro</a><br>
+Regras para Radicais - Saul Alinsky <a href="https://cdn.bookey.app/files/pdf/book/pt/regras-para-radicais.pdf" target="_blank">Livro</a>
+</p>
+    </div>
+</div>
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Aula 04: Religião e Vida Intelectual</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>Notas <br>
+Deve-se estudar uma história intelectual do Clero Brasileiro. O que era sua doutrina?<br>
+Quais os debates que ocorriam nos seminários do Brasil? <br>
+Como ocorreu o sucateamento dos seminários do Brasil?<br>
+Declínio Intelectual do protestantismo (ainda mais obscuro que o católico)<br>
+</p>
+    </div>
+</div>
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Aula 05: Desespero e Maus Tempos </h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+conteúdo<a href="" target="_blank">Livro</a><br>
+</p>
+    </div>
+</div>
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Aula 06: Vícios Centrais do Intelectual Brasileiro</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+História das ideias religiosas no Brasil - José Camilo de Oliveira Torres<a href="https://bd.camara.leg.br/bd/items/c126aaad-4ad5-4689-a84e-7dfe310e5671" target="_blank">Livro</a><br>
+A filosofia do Brasil - Padre Manuel Franca<a href="" target="_blank">não encontrado</a>
+</p>
+    </div>
+</div>
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Aula 07: O Fracasso Intelectual da Direita Brasileira</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+conteúdo<a href="" target="_blank">Livro</a><br>
+</p>
+    </div>
+</div>
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Aula 08: O Jornalismo no Brasil</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+História da imprensa no Brasil - Nelson Werneck Sodré <a href="https://www.marxists.org/portugues/sodre/1966/mes/or404270.pdf" target="_blank">Livro</a><br>
+Recordações do Escrivão Isaías Caminha - Lima Barreto <a href="https://digital.bbm.usp.br/bitstream/bbm/4808/1/001228_COMPLETO.pdf" target="_blank">Livro</a><br>
+Quase Memória - Carlos Heitor Cony <a href="" target="_blank">não encontrado</a><br>
+</p>
+    </div>
+</div>
+
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Aula 09: Como se Iniciar na Filosofia</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+Como ler livros-Mortimer Adler <a href="https://ia803108.us.archive.org/7/items/15comolerlivrosmortimeradler/15como%20ler%20livros%2C%20mortimer%20adler.pdf" target="_blank">Livro</a><br>
+The Modern Researcher - Jacques Barzun <a href="https://pdfcoffee.com/qdownload/jacques-barzun-henry-f-graff-the-modern-researcher-wadsworth-publishing-1992-pdf-free.html" target="_blank">Livro</a><br>
+Teacher in America - Jacques Barzun <a href="" target="_blank">não encontrado</a><br>
+Trivium - Irmã Miriam Joseph <a href="https://dn710303.ca.archive.org/0/items/oTrivium/MIRIAM%2C%20Irma%20Joseph%2C%20O%20Trivium.pdf" target="_blank">Livro</a><br>
+Logique - Cardeal D. Mercier <a href="https://dn710102.ca.archive.org/0/items/elementsoflogic00merc/elementsoflogic00merc.pdf" target="_blank">Livro</a><br>
+Introdução à Lógica - Cezar Mortari <a href="https://ia801205.us.archive.org/14/items/IntroduoalgicaporCezarA.Mortari/120814-5z61o1YX1JPDG.pdf" target="_blank">Livro</a><br>
+Suma Gramatical - Carlos Nougué <a href="https://pdfcoffee.com/qdownload/suma-gramatical-da-lingua-portuguesa-gramatica-geral-e-avanada-5-pdf-free.html" target="_blank">Livro</a><br>
+Traite de l'Argumentation - Chaïm Perelman <a href="https://ia800309.us.archive.org/5/items/PERELMANChaimOLBRECHTSTYTECALucie.TratadoDaArgumentacaoANovaRetorica/PERELMAN%2C%20Chaim%3B%20OLBRECHTS-TYTECA%2C%20Lucie.%20Tratado%20da%20Argumentacao%20-%20A%20Nova%20Retorica.pdf" target="_blank">Livro</a><br>
+Aulas do Sheikh Hamza Yusuf <a href="https://www.youtube.com/watch?v=5L6R-CI52xc&list=PLsxWf6VVY0dCy8z6sFKueda3-_4JFmEDh" target="_blank">Playlist</a><br>
+</p>
+    </div>
+</div>
+
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Aula 10: Como se Iniciar na História</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+Notas<br>
+Domínio do Trivium<br>
+Conhecimento de Meta-história<br><br>
+Rumo à Estação Finlândia - Edmund Wilson <a href="https://14960202059846734255.googlegroups.com/attach/f9ffe4a2edddd/Edmund%20Wilson-Rumo%20à%20Estação%20Finlândia-Companhia%20de%20Bolso%20(2006)%20-%20Copiar.pdf?part=0.1&view=1&vt=ANaJVrGx77_4ZNQliaB12OIMdXKGrH-pdvEW5gL0QfHXCjdWaVt7aJhVIIhLPRslpmLiFwq90FHN9QAGJ8PeUXy5BUpxKZwQHx7XLW5hG8h4dYMVBOP_mkI" target="_blank">Livro</a><br>
+Ciência Nova - Giambattista Vico <a href="" target="_blank">não encontrado</a><br>
+</p>
+    </div>
+</div>
+
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Aula 11: Internet e Vida Intelectual</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+Notas<br>
+NÃO ASSISTA NETFLIX<br>
+Fique longe de redes sociais<br>
+Não use muito celular<br>
+Não dá para ter vida intelectual sem pirataria<br>
+Kindle ou livro em papel, Tablet diminui concentração<br>
+</p>
+    </div>
+</div>
+
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Aula 12: Reunião de Informações</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+
+Great Books, Mortmer Adler - Volume 1 e Sintópica <a href="" target="_blank">não encontrado</a><br>
+The Modern Researcher, Jacques Barzun <a href="https://pdfcoffee.com/qdownload/jacques-barzun-henry-f-graff-the-modern-researcher-wadsworth-publishing-1992-pdf-free.html" target="_blank">Livro</a><br>
+</p>
+    </div>
+</div>
+
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Aula 13: O Cinema no Século XX</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+
+Cinemas nacionais contra Hollywood - Guy Hennebelle <a href="" target="_blank">não encontrado</a><br>
+Mainstream: A guerra global das mídias e das culturas - Frédéric Martel <a href="" target="_blank">não encontrado</a><br>
+</p>
+    </div>
+</div>
+
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Aula 14: Iniciação aos Estudos Literários(15?)</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+    <p>
+Vou procurar os links depois<br><br>
+-Preto & Branco  - Augusto Meyer<br>
+-The Hall of Uselessness - Simon Leys<br>
+-História da Literatura Ocidental - Otto Maria Carpeaux<br>
+-Jornal de Crítica - Álvaro Lins<br>
+-Gustavo Corção<br>
+-Literary Criticism: A Short History - William K. Wimsatt<br><br>
+
+POÉTICA E RETÓRICA CLÁSSICA<br><br>
+-Poética - Aristóteles<br>
+-Retórica - Aristóteles<br><br>
+
+CLÁSSICOS DA LITERATURA INFANTIL<br><br>
+-Lista de livros do Hayao Miyazaki<br>
+-Coleção Vagalume<br><br>
+LITERATURA CLÁSSICA<br><br>
+-Coleção Clássicos Jackson<br>
+-Expedições do Prof. Monir Nasser<br>
+-Biblioteca do Borges<br>
+    
+
+</p>
+    </div>
+</div>
+
+
+<!-- conteúdo<a href="" target="_blank">Livro</a><br> -->
+
+</main>
+
+<footer>
+© 2025 · <a href="terms.html">Termos de Uso</a>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+// CONTROLE MANUAL (NUNCA BLOQUEADO)
+function toggleAccordionManual(item) {
+    const content = item.querySelector('.accordion-content-custom');
+
+    if (item.classList.contains('active')) {
+        item.classList.remove('active');
+        content.style.maxHeight = null;
+    } else {
+        item.classList.add('active');
+        content.style.maxHeight = content.scrollHeight + 'px';
+    }
+}
+
+// CONTROLE AUTOMÁTICO (BUSCA)
+function openAccordion(item) {
+    const content = item.querySelector('.accordion-content-custom');
+    if (!item.classList.contains('active')) {
+        item.classList.add('active');
+        content.style.maxHeight = content.scrollHeight + 'px';
+    }
+}
+
+function closeAccordion(item) {
+    const content = item.querySelector('.accordion-content-custom');
+    item.classList.remove('active');
+    content.style.maxHeight = null;
+}
+
+// Normaliza texto
+function normalize(text) {
+    return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+}
+
+const searchInput = document.getElementById('searchInput');
+
+// BUSCA PROGRESSIVA
+searchInput.addEventListener('input', function () {
+    const value = normalize(this.value);
+
+    // Se apagar tudo → fecha tudo
+    if (!value) {
+        document.querySelectorAll('.accordion-item-custom').forEach(item => {
+            closeAccordion(item);
+            item.classList.remove('highlight');
+        });
+        return;
+    }
+
+    document.querySelectorAll('.accordion-item-custom').forEach(item => {
+        item.classList.remove('highlight');
+        const text = normalize(item.dataset.search + item.innerText);
+
+        if (text.includes(value)) {
+            openAccordion(item);
+            item.classList.add('highlight');
+        }
+    });
+});
+
+// FINALIZA BUSCA (Enter ou espaço)
+searchInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+        const value = normalize(this.value.trim());
+        let firstMatch = null;
+
+        document.querySelectorAll('.accordion-item-custom').forEach(item => {
+            const text = normalize(item.dataset.search + item.innerText);
+
+            if (value && text.includes(value)) {
+                openAccordion(item);
+                item.classList.add('highlight');
+                if (!firstMatch) firstMatch = item;
+            } else {
+                closeAccordion(item);
+                item.classList.remove('highlight');
+            }
+        });
+
+        if (firstMatch) {
+            setTimeout(() => {
+                firstMatch.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            }, 150);
+        }
+    }
+});
+
+// ANIMAÇÃO DO TÍTULO AO ENTRAR NA TELA
+const title = document.querySelector('.reveal-title');
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target); // anima só uma vez
+        }
+    });
+}, {
+    threshold: 0.4
+});
+
+observer.observe(title);
+</script>
+
+</body>
+</html>
