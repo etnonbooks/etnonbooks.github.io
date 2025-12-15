@@ -101,6 +101,77 @@ main {
     transition: all 0.35s ease;
 }
 
+/* BUSCA */
+.search-box {
+    margin-bottom: 25px;
+    position: sticky;      /* NOVO */
+    top: 10px;             /* NOVO */
+    z-index: 100;          /* NOVO */
+    background: #000;      /* NOVO */
+    padding: 10px 0;       /* NOVO */
+}
+
+.search-box input {
+    background: #0e0e0e;
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #fff;
+}
+
+.search-box input::placeholder {
+    color: #888;
+}
+
+/* CAIXAS */
+.accordion-item-custom {
+    background: linear-gradient(145deg, #151515, #0e0e0e);
+    border-radius: 12px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: box-shadow 0.3s;
+}
+
+.accordion-item-custom.highlight {
+    box-shadow: 0 0 0 2px rgba(77,163,255,0.6);
+}
+
+.accordion-header-custom {
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion-header-custom h5 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.accordion-header-custom i {
+    transition: transform 0.3s;
+}
+
+.accordion-content-custom {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    padding: 0 20px;
+}
+
+.accordion-content-custom p {
+    margin: 15px 0 20px;
+    color: #ccc;
+}
+
+.accordion-content-custom a {
+    color: #4da3ff;
+    text-decoration: none;
+}
+
+.accordion-item-custom.active i {
+    transform: rotate(180deg);
+}
 
 /* FOOTER */
 footer {
@@ -154,26 +225,7 @@ footer a:hover { color: #fff; }
         font-size: 1.9rem;
     }
 }
-.usage-note {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 40px 0;
-    text-align: center;
-}
 
-.usage-note img {
-    width: 450px;          /* tamanho pequeno e fixo */
-    height: auto;
-    opacity: 0.95;
-}
-
-.usage-note p {
-    margin-top: 8px;
-    font-size: 0.95rem;
-    color: #bbb;
-}
 
 </style>
 </head>
@@ -201,32 +253,258 @@ footer a:hover { color: #fff; }
 </div>
 </nav>
 
-<div class="usage-note">
-    <img src="https://media.tenor.com/yw5rmwvsY7IAAAAM/seriously-dumb.gif" alt="Uso liberado">
-    <p>Ainda não terminei essa parte :D</p>
+<main class="container my-5">
+
+<!-- BUSCA -->
+<div class="search-box">
+    <input id="searchInput" type="text" class="form-control" placeholder="Buscar conteúdo...">
 </div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
+<!-- TÍTULO -->
+<h1 class="section-title reveal-title">
+    <span>Livros</span>
+</h1>
 
 
+<!-- CAIXAS -->
+<div class="accordion-item-custom" data-search="socrates filosofia">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Platão</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+A República <a href="https://drive.google.com/file/d/1UTlecmdTVDrnP3DuE9uNH2AWMRKYdjH1/view" target="_blank">Livro</a><br>
+Critão <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBWWV6NkJmUFByQUU/view?resourcekey=0-1xuGzhig9ssTe7zC_5Eh_g" target="_blank">Livro</a><br>
+Fedão <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBYTN2NEJRNkY5Nmc/view?resourcekey=0-guK_Dy4VPQfFO9AT6Jw4EQ" target="_blank">Livro</a><br>
+Filebo <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBTzk0bDRzVE02aUE/view?resourcekey=0-V7eZjPf7PZF6Ka5wQylIUw" target="_blank">Livro</a><br>
+Gorgias <a href="https://drive.google.com/file/d/1TDsoxuMSgGFakIgZYmlNsYQJuuQ95I6b/view" target="_blank">Livro</a><br>
+O Banquete <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBazljaEdoaE12YkU/view?resourcekey=0-YRDJGC4S_LtMk4MlQgBvhw" target="_blank">Livro</a><br>
+Parmênides <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBTjJsemI2d0o3bGs/view?resourcekey=0-tdrjmAZKSkSVSMq6_sehoA" target="_blank">Livro</a><br>
+Apologia de Socrates <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBUW1BVUg5RlZqTW8/view?resourcekey=0-2jopIHtBCUIZ1lkLvjz_8Q" target="_blank">Livro</a><br>
+Teeteto <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBd01YdWRfaExRUGs/view?resourcekey=0-vkfeYDl18BWyuttMr5uxGw" target="_blank">Livro</a><br>
+        </p>
+    </div>
+</div>
+
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Jean Jacques Russeau</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+O Contrato Social <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBN0JJR2htZUJla3c/view?resourcekey=0-nfDtxeEeWRScIVZ_EOOkfg" target="_blank">Livro</a><br>
+</p>
+    </div>
+</div>
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Michel Foucault</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+Genealogia del Racismo <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBOFIzamZwN2QwMk0/view?resourcekey=0-cgaem7JjZ1jGKC1MFqs08A" target="_blank">Livro</a><br>
+Em Defesa da Sociedade <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBRVBaZDcyejBOQ3c/view?resourcekey=0-qghHvlu8Bc7gQ6AbfiyHRg" target="_blank">Livro</a><br>
+A história da loucura na idade clássica <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBcG56VGpzVE5rSTA/view?resourcekey=0-oDondt8fGs0FiuQ3SZEEiA" target="_blank">Livro</a><br>
+A microfisica do poder <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBT0VyM09aOUdEM3M/view?resourcekey=0-H7k2rNPFTYB9qN_ySacjEw" target="_blank">Livro</a><br>
+A ordem do discurso <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBdmlEMEwyUjQ5WTA/view?resourcekey=0--I-5phFlqD2cDo6AxEJvyw" target="_blank">Livro</a><br>
+Arqueologia do saber <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBRjU0c0VTU3N2Vzg/view?resourcekey=0-o9M9c_YcyHDlTjKVhykmEg" target="_blank">Livro</a><br>
+As palavras e as coisas <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBb0w2R0tyZUR1bXc/view?resourcekey=0-pvuI4e7jIr53yTyt4nQIBg" target="_blank">Livro</a><br>
+Doença Mental e Psicologia <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBVGhOMTJWMENIOUk/view?resourcekey=0-4K8FxiMQvsfF7f7BHGhg2g" target="_blank">Livro</a><br>
+Isto não é um cachimbo <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBN21MYlpGR09LR0k/view?resourcekey=0-0pV3WZDCenEofwagzDj9VQ" target="_blank">Livro</a><br>
+O Nascimento da Clinica <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBaHA4N1pSbjVUUms/view?resourcekey=0-iyd3NEGtoK62hxLJeypq7g" target="_blank">Livro</a><br>
+Vigiar e Punir <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBcWF5RVg2QkNNNGs/view?resourcekey=0-ECGucBlRfifg9K2DIMH1Ag" target="_blank">Livro</a><br>
+A verdade e as formas juridicas <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBdWFuREItcW1Cdzg/view?resourcekey=0-9uVDmaeJpdSVgSLPdn3g-g" target="_blank">Livro</a><br>
+História Da Sexualidade 1 - A vontade de Saber <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBaFJkc3EyS0EwTnM/view?resourcekey=0-5zehby8ZtR3uNPuzFpS4Bg" target="_blank">Livro</a><br>
+História Da Sexualidade 2 - O Uso Dos Prazeres <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBeVZ5UWJPNE1VZ1k/view?resourcekey=0-eYMqlr1xyrQT2YRXNa5nCw" target="_blank">Livro</a><br>
+Os Anormais <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBb1ZUMXNLazNHQ2s/view?resourcekey=0-OfNsJZ-ki-rCXaA-16OBXg" target="_blank">Livro</a><br>
+
+</p>
+    </div>
+</div>
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Jean Pierre Vernant</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+O universo, os deuses, os homens <a href="https://drive.google.com/file/d/1L4zA4Rjmzknf8r1EKDHRwqj-AXpHeEC7/view" target="_blank">livro</a><br>
+As Origens do Pensamento Grego <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBc2djQmt0RHE0bTg/view?resourcekey=0-15KB6EB6J3HGwqfNgzb4-g" target="_blank">livro</a><br>
+O homem grego <a href="https://drive.google.com/file/d/1aFED5VQtIvb98FBMxDb0yCLG8Ldz_qqj/view" target="_blank">livro</a><br>
+
+</p>
+    </div>
+</div>
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Simone de Beaouvir </h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+O Segundo Sexo 1, Fatos e mitos <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBMS1uU0hremhWeU0/view?resourcekey=0-5NkyO29D_6ap6_phu_IckQ" target="_blank">Livro</a><br>
+O Segundo Sexo 2, A experiência vivida <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBZkdzU3NNcUdTc0E/view?resourcekey=0-jIGqZKfLo4xk8IXwmB6GbQ" target="_blank">Livro</a><br>
+</p>
+    </div>
+</div>
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Friederich Nietzsche</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+O Anticristo <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBWTBNTjdLNmRhWFU/view?resourcekey=0-5wA2o94nee_n4y2edTt4vw" target="_blank">Livro</a><br>
+Alem do Bem e do Mal <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBMGN5Z0lURVEtb2M/view?resourcekey=0-Wi_7m0pf271X8wxW9FNMBg" target="_blank">Livro</a><br>
+</p>
+    </div>
+</div>
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Escritos de ditadores</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+Fundações do leninismo- Joseph Stalin <a href="https://drive.google.com/file/d/1wlMkGJ0Bx1Uf66qAOT6ikj_s5rKDrvfg/view" target="_blank">Livro</a><br>
+O Marxismo e Problema Nacional e Colonial - Joseph Stalin <a href="https://drive.google.com/file/d/1wYuDuploLAf2BZ8jEkk2Q7nf3_AWMJZx/view" target="_blank">Livro</a><br>
+Problemas Econômicos do Socialismo na U.R.S.S - Joseph Stalin <a href="https://drive.google.com/file/d/1wwJcRFjJBgpavnvT7CJWYJEowb_lZrP_/view" target="_blank">Livro</a><br>
+Minha Luta - Adolf Hitler <a href="https://drive.google.com/file/d/1wMa05pdVoXg0cxPK_GI8x90XpwB_TEZ6/view" target="_blank">Livro</a><br>
+O Livro Vermelho - Mao Tsé-tung <a href="https://drive.google.com/file/d/1wVhJxVbWurV_0teRl4PZnrPL2DOKHEWE/view" target="_blank">Livro</a><br>
+Sobre a Grande Guerra Patriótica - Joseph Stalin <a href="https://drive.google.com/file/d/1wcGc-fDfqPJYD3slU1DFrT7m2tii4wz6/view" target="_blank">Livro</a><br>
+Virtude e terror - Robespierre <a href="" target="_blank">Não encontrado</a><br>
+</p>
+    </div>
+</div>
+
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Friedrich Hegel</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+A Razão na História <a href="https://drive.google.com/file/d/1eQVfWM1Kj-azdRvcWJODcXhn8a0yLx7w/view" target="_blank">Livro</a><br>
+Ciência da Lógica <a href="https://drive.google.com/file/d/1O-MBWEVRljOGkldMFs7_FKf8OkzISMpk/view" target="_blank">Livro</a><br>
+Compreender Hegel (Francisco Pereira Nóbrega) <a href="https://drive.google.com/file/d/1ReHUY0RfukeDyzsA4ceA8FTWdcFbuxO8/view" target="_blank">Livro</a><br>
+Cursos de Estética <a href="https://drive.google.com/file/d/1JEK1K4uia99APDX0Atj-ALQvwIz_a-Jm/view" target="_blank">Livro</a><br>
+Fenomenologia do Espírito <a href="https://drive.google.com/file/d/1kXVUxTFn8SC_82AYDz7tHj0E_MBJXEBC/view" target="_blank">Livro</a><br>
+Filosofia do Direito <a href="https://drive.google.com/file/d/1nX47ynQwf4YpN1u6SIkSalkSr0t_cIle/view" target="_blank">Livro</a><br>
+Introdução a História da Filosofia <a href="https://drive.google.com/file/d/1nHuvgZZuyqj_UuJ4_MXFIFYUcRpSEGFQ/view" target="_blank">Livro</a><br>
+O sistema da vida ética <a href="https://drive.google.com/file/d/17zG4YDGmunL4-DcfZkYa0hEgv25L6lm5/view" target="_blank">Livro</a><br>
+Para ler a Fenomenologia do Espírito (Paulo Meneses) <a href="https://drive.google.com/file/d/1YZY5rpwrKwR6QqTQ-gzr7PN6U0eFNIpJ/view" target="_blank">Livro</a><br>
+Prefácio à “Filosofia da religião” de Hinrichs - Sobre fé e razão <a href="https://drive.google.com/file/d/1JKxu5KFZSrar81RiS3S0sKKO8awgpT6I/view" target="_blank">Livro</a><br>
+Propedêutica Filosófica <a href="https://drive.google.com/file/d/1JN76fXuonVMCijejLe6mzu42MyrOBV4h/view" target="_blank">Livro</a><br>
+
+</p>
+    </div>
+</div>
+
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Immanuel Kant</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+Prolegômenos a toda metafísica futura <a href="https://drive.google.com/file/d/1s48YcE99TnyOU26sGpolou7p2rBgDsMp/view" target="_blank">Livro</a><br>
+À Paz Perpétua <a href="https://drive.google.com/file/d/1tkHQyUNLs6yhKl2KQ5DDLVnlSIGmhr9Y/view" target="_blank">Livro</a><br>
+A Religião nos Limites da Simples Razão <a href="https://drive.google.com/file/d/1EEMwFDSZ1CzXUupDovYgqTnYewwnU-E3/view" target="_blank">Livro</a><br>
+Antropologia de um Ponto de Vista Pragmático <a href="https://drive.google.com/file/d/1uf5iiq0mYpmMyyZVLuQOXkol0_pHzxHU/view" target="_blank">Livro</a><br>
+Crítica da Faculdade de Julgar <a href="https://drive.google.com/file/d/1kdAunLwy2NCywBFgnCoESESTzndYOfgH/view" target="_blank">Livro</a><br>
+Crítica da razão prática <a href="https://drive.google.com/file/d/1IdYu5jaJWXlRDoPoYLfaC-b-Sa4Yl30K/view" target="_blank">Livro</a><br>
+Crítica da Razão Pura <a href="https://drive.google.com/file/d/1fSReSfU0TAt-sUF5hnxc65aOp5nIyf0F/view" target="_blank">Livro</a><br>
+Fundamentação da Metafísica dos Costumes <a href="https://drive.google.com/file/d/1WDFuPy0C0QdJ9JBxgtNZQTHBTAofmu4j/view" target="_blank">Livro</a><br>
+Metafísica dos Costumes <a href="https://drive.google.com/file/d/1oIHnTugXyphpxeVsml4CsoAB9E908vTJ/view" target="_blank">Livro</a><br>
+A paz perpétua e outros opúsculos <a href="https://drive.google.com/file/d/1UTfpNjbW_XTHCQNof3B6JYc17MLEUTCy/view" target="_blank">Livro</a><br>
+Lógica <a href="https://drive.google.com/file/d/19jbmjUXvwKn1xNlhFNfJfirdbbGo0U-p/view" target="_blank">Livro</a><br>
+Lógica [Excertos da] Introdução <a href="https://drive.google.com/file/d/1t_uemtaBFyGESAQbZbpnz2Gk6nla-MBA/view" target="_blank">Livro</a><br>
+O conflito das faculdades <a href="https://drive.google.com/file/d/1MBJn1frjWKDScNMAWTwyUxSLYXWGsyTR/view" target="_blank">Livro</a><br>
+Observações Sobre o Sentimento do Belo e do Sublime Ensaio Sobre as Doenças Mentais <a href="https://drive.google.com/file/d/1oAIXARuGmERownwVD9wWvEIauPq0c-EC/view" target="_blank">Livro</a><br>
 
 
+</p>
+    </div>
+</div>
+
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Idealismo alemão</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+German Philosophy -1760-1860- The Legacy of Idealism- TERRY PINKARD <a href="https://drive.google.com/file/d/1duBA-UnC_Mk44JfbhKXqo9z1IB8FosrQ/view" target="_blank">Livro</a><br>
+Idealismo Alemão - Will Dudley <a href="https://drive.google.com/file/d/1g4NQogGhfkrz5X979gNTZZDWppl35F7x/view" target="_blank">Livro</a><br>
+Internationales Jahrbuch des Deutsche <a href="https://drive.google.com/file/d/1e35u58QNrRDc439TQzBrKlxLJQPZ6Jpm/view" target="_blank">Livro</a><br>
+Escritos filosóficos - Johann Gottlieb Fichte, Friedrich von Shelling <a href="https://drive.google.com/file/d/11a1_udYD7CHX0gwJYUdT7FYwPCtcfB05/view" target="_blank">Livro</a><br>
+Routledge History of Philosophy - The Age of German Idealism <a href="https://drive.google.com/file/d/1dvs6ndaxvMBnXnBYbOSHWR5y0FcCScz8/view" target="_blank">Livro</a><br>
+
+</p>
+    </div>
+</div>
+
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Johann Gottlieb Fichte</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+Fundamento do direito natural segundo os princípios da doutrina da ciência <a href="https://drive.google.com/file/d/11bPipmqZ9B07PDCSG1aPkh_MZuo1Z5CD/view" target="_blank">Livro</a><br>
+Preleções de Zurique sobre o conceito da doutrina da ciência <a href="https://drive.google.com/file/d/10yh3KM1Rs1LBLmH08bbbRSwJ3LKYUL-w/view" target="_blank">Livro</a><br>
+</p>
+    </div>
+</div>
+
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Pré-socráticos</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+Os Pensadores originários <a href="https://drive.google.com/file/d/1xJNn9NCHO04KqZf4kCcjvOqDgEWk2oWk/view" target="_blank">Livro</a><br>
+<br>
+Os Pré-socraticos <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBeUd5ck5jcFdndDg/view?resourcekey=0-SC7gLluM_snx3ga4ugeUgQ" target="_blank">Livro</a><br>
+
+
+</p>
+    </div>
+</div>
+<div class="accordion-item-custom" data-search="platao filosofia ideias">
+    <div class="accordion-header-custom" onclick="toggleAccordionManual(this.parentElement)">
+        <h5>Coleção os pensadores</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="accordion-content-custom">
+        <p>
+Os pré-socráticos <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBeUd5ck5jcFdndDg/view?resourcekey=0-SC7gLluM_snx3ga4ugeUgQ" target="_blank">Livro</a><br>
+Platão <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBLVZ3QklERjN2SG8/view?resourcekey=0-UIy6J30bXO0uGI2lO6Q3TA" target="_blank">Livro</a><br>
+Sócrates <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBVVZ6WkFob0poNGc/view?resourcekey=0-qPAhiia7mGrjgETmK3zaMw" target="_blank">Livro</a><br>
+Aristóteles <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBNEFhaS11NXBpUkE/view?resourcekey=0-T_8K-EiC5_t-sY7i6nTt5w" target="_blank">Livro</a><br>
+Epicuro, Lucrécio, Cícero, Sêneca e Marco Aurélio <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBVVE5a0VIeTJ3RTg/view?resourcekey=0-f7fE9mFIGSDwS9JWYOJN3Q" target="_blank">Livro</a><br>
+Santo Agostinho <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBeC1xNU42cHdDdTA/view?resourcekey=0-enxBvHuL62AbnkVjm0iNGQ" target="_blank">Livro</a><br>
+Santo Anselmo e Abelardo <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBLXpyVl83aXJ6WlE/view?resourcekey=0-_RWsRmSsz99Yce-aBiCJBg" target="_blank">Livro</a><br>
+Tomas de Aquino e Dante <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBSFZDSmRCMXE4VWM/view?resourcekey=0-UGZYZ-K6sBnZnShVEB_3NA" target="_blank">Livro</a><br>
+Giordano Bruno, Galileu Galilei e Tommaso Campanella <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBYWc1dkRyeUVWVmM/view?resourcekey=0-xpkuQwJDoHoR7k02VcsV3g" target="_blank">Livro</a><br>
+Baruch de Espinosa <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBVTZPWVZwdkxjbVE/view?resourcekey=0-e_Ej3k4mFwCMi1y3ohDDHQ" target="_blank">Livro</a><br>
+john Locke <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBMVo5VkVFZW1PWFk/view?resourcekey=0-am0D4yOe8e4Ihc5cvBELpA" target="_blank">Livro</a><br>
+Diderot <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBck85LXFUZmo0Nmc/view?resourcekey=0-vHYbMfUkTHhAreuD1zod5Q" target="_blank">Livro</a><br>
+Jean Jacques Russeau <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBUF9PTVhyb0owdGc/view?resourcekey=0-kXeJ1K0q1m5B_DwBnxA-NA" target="_blank">Livro</a><br>
+Soren Aabye Kierkegaard <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBMkRqanNpRWN3MVE/view?resourcekey=0-j-SvjXgNA86KR_EF8tnVmQ" target="_blank">Livro</a><br>
+Friederich Nietzsche <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBb0N6Q0h1aTlRajQ/view?resourcekey=0-DM7FNAK5RPHsRBuYtWuLOA" target="_blank">Livro</a><br>
+Auguste Comte <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBb1p3QTJQLVVmUWs/view?resourcekey=0-PmbEEFvsz688GpoI4-6k7Q" target="_blank">Livro</a><br>
+Caston Bachelard <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBZ0pjSzVYbzVSNHM/view?resourcekey=0-NkpcZecFVDXDrZrnZ0Xa6Q" target="_blank">Livro</a><br>
+Ludwig Wittgenstein <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBUDNqT2pLWkJsVlE/view?resourcekey=0-uYD86t_9I2qxBmIyYP7vNA" target="_blank">Livro</a><br>
+Theodor Ludwig Wiesengrund Adorno <a href="https://drive.google.com/file/d/0B2ODxRLYQiZBbWNyT2Z5Um44QlE/view?resourcekey=0-rZ3xQz_OZzPL3iMIR-rSgQ" target="_blank">Livro</a><br>
+
+</p>
+    </div>
+</div>
 
 <footer>
 © 2025 · <a href="terms.html">Termos de Uso</a>
@@ -235,14 +513,118 @@ footer a:hover { color: #fff; }
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
+// CONTROLE MANUAL (NUNCA BLOQUEADO)
+function toggleAccordionManual(item) {
+    const content = item.querySelector('.accordion-content-custom');
 
+    if (item.classList.contains('active')) {
+        item.classList.remove('active');
+        content.style.maxHeight = null;
+    } else {
+        item.classList.add('active');
+        content.style.maxHeight = content.scrollHeight + 'px';
+    }
+}
+
+// CONTROLE AUTOMÁTICO (BUSCA)
+function openAccordion(item) {
+    const content = item.querySelector('.accordion-content-custom');
+    if (!item.classList.contains('active')) {
+        item.classList.add('active');
+        content.style.maxHeight = content.scrollHeight + 'px';
+    }
+}
+
+function closeAccordion(item) {
+    const content = item.querySelector('.accordion-content-custom');
+    item.classList.remove('active');
+    content.style.maxHeight = null;
+}
+
+// Normaliza texto
+function normalize(text) {
+    return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+}
+
+const searchInput = document.getElementById('searchInput');
+
+// BUSCA PROGRESSIVA
+searchInput.addEventListener('input', function () {
+    const value = normalize(this.value);
+
+    // Se apagar tudo → fecha tudo
+    if (!value) {
+        document.querySelectorAll('.accordion-item-custom').forEach(item => {
+            closeAccordion(item);
+            item.classList.remove('highlight');
+        });
+        return;
+    }
+
+    document.querySelectorAll('.accordion-item-custom').forEach(item => {
+        item.classList.remove('highlight');
+        const text = normalize(item.dataset.search + item.innerText);
+
+        if (text.includes(value)) {
+            openAccordion(item);
+            item.classList.add('highlight');
+        }
+    });
+});
+
+// FINALIZA BUSCA (Enter ou espaço)
+searchInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+        const value = normalize(this.value.trim());
+        let firstMatch = null;
+
+        document.querySelectorAll('.accordion-item-custom').forEach(item => {
+            const text = normalize(item.dataset.search + item.innerText);
+
+            if (value && text.includes(value)) {
+                openAccordion(item);
+                item.classList.add('highlight');
+                if (!firstMatch) firstMatch = item;
+            } else {
+                closeAccordion(item);
+                item.classList.remove('highlight');
+            }
+        });
+
+        if (firstMatch) {
+            setTimeout(() => {
+                firstMatch.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            }, 150);
+        }
+    }
+});
+
+// ANIMAÇÃO DO TÍTULO AO ENTRAR NA TELA
+const title = document.querySelector('.reveal-title');
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target); // anima só uma vez
+        }
+    });
+}, {
+    threshold: 0.4
+});
+
+observer.observe(title);
 </script>
 
 </body>
 </html>
 
 
-
+<!--https://drive.google.com/drive/u/0/folders/0B2ODxRLYQiZBcVNsNF90VVJacFk?resourcekey=0-UrHKY8NRuEteC8UjPp1FcA-->
+<!--<a href="" target="_blank">Livro</a><br>-->
 
 
 
